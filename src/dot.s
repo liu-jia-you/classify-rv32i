@@ -37,6 +37,25 @@ dot:
 loop_start:
     bge t1, a2, loop_end
     # TODO: Add your own implementation
+    lw t2, 0(a0)
+    lw t3, 0(a1)
+    bge t2, x0, mul   
+    neg t2, t2
+    neg t3, t3
+
+mul:
+    beq t2, x0, go_loop
+    add t0, t0, t3
+    addi t2, t2, -1
+    bne t2, x0, mul
+
+go_loop:    
+    slli t2, a3, 2
+    slli t3, a4, 2
+    add a0, a0, t2
+    add a1, a1, t3
+    addi t1, t1, 1
+    j loop_start
 
 loop_end:
     mv a0, t0

@@ -63,7 +63,12 @@ write_matrix:
 
     # mul s4, s2, s3   # s4 = total elements
     # FIXME: Replace 'mul' with your own implementation
-
+    add s4, x0, x0
+mul:
+    add s4, s4, s2
+    addi s3, s3, -1
+    bne s3, x0, mul
+    
     # write matrix data to file
     mv a0, s0
     mv a1, s1        # matrix data pointer

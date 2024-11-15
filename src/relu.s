@@ -29,6 +29,20 @@ relu:
 
 loop_start:
     # TODO: Add your own implementation
+    beq t1 , a1, end 
+    slli t2, t1, 2
+    add t2, a0, t2
+    lw t3, 0(t2)
+    bge t3, x0, go_loop
+    add t3 ,x0, x0
+    sw t3, 0(t2)
+    
+go_loop:
+    addi t1, t1, 1
+    j loop_start
+
+end:
+    jr ra
 
 error:
     li a0, 36          
